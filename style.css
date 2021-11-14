@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tbody {
+    text-align: left;
+    transition-property: color;
+}
+
+thead th {
+    font-size: 18px;
+    padding: 30px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+tbody td {
+    padding: 30px 0;
+    cursor: pointer;
+    text-align: center;
+}
+
+
+tbody :hover {
+    background-color: #F2F2F2;
+}
+
+.Table_Titles_Rep {
+    display: none;
+}
