@@ -1,3 +1,15 @@
+// Selecting elements
+const mainModal = document.getElementById('userFormModal');
+const openModalBtn = document.getElementById('modalBtn');
+const closeModalBtn = document.getElementById('closeBtn');
+const modalForm = document.querySelector('form');
+const firstName = document.querySelector('firstName');
+const lastName = document.querySelector('lastName');
+const mobileNumber = document.querySelector('mobileNumber');
+const personalNumber = document.querySelector('personalNumber');
+const zipCode = document.querySelector('zipCode');
+const email = document.querySelector('email');
+
 function renderUsers(users){
   const userTableContainer = document.querySelector(".tableContainer");
   const userTableBody = userTableContainer.querySelector("tbody");
@@ -34,17 +46,7 @@ async function getUsers(){
 getUsers();
 
 
-////////////////////////////////////////////////////////////////////////////////
 // Delete User Data Row
-// const removeBtn = document.querySelectorAll('.removeUser');
-// removeBtn.forEach(btn => {
-//     btn.addEventListener('click', (e) => {
-//         const tr = e.target.parentNode.parentNode;
-//         tr.remove();
-//         createUser();
-//     })
-// })
-////////////////////////////////////////////////////////////////////////////////
 
 
 function userActions(){
@@ -74,21 +76,6 @@ async function createUser(userData){
 }
 
 
-// Modal creation, configuration and data validation
-
-// Selecting elements
-const mainModal = document.getElementById('userFormModal');
-const openModalBtn = document.getElementById('modalBtn');
-const closeModalBtn = document.getElementById('closeBtn');
-const modalForm = document.querySelector('form');
-const firstName = document.querySelector('firstName');
-const lastName = document.querySelector('lastName');
-const mobileNumber = document.querySelector('mobileNumber');
-const personalNumber = document.querySelector('personalNumber');
-const zipCode = document.querySelector('zipCode');
-const email = document.querySelector('email');
-
-
 // Add event listeners for modal open/close buttons
 openModalBtn.addEventListener('click', openModal);
 
@@ -106,4 +93,3 @@ function closeModal() {
   }
 }
 
-// Errors
