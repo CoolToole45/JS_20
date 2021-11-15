@@ -1,66 +1,3 @@
-////////////////////////////////////////////////////////////////////////////////
-// async function loadIntoTable(url, table) {
-//   const tableHead = table.querySelector('thead');
-//   const tableBody = table.querySelector('tbody');
-//   const responce = await fetch(url);
-//   const { rows } = await responce.json;
-
-//   for (const row of rows) {
-//     const rowElement = document.createElement("tr");
-
-//     for (const cellText of row) {
-//       const cellElement = document.createElement("td");
-
-//       cellElement.textContent = cellText;
-//       rowElement.appendChild(cellElement);
-//     }
-
-//     tableBody.appendChild(rowElement);
-//   }
-
-//   // tableBody.innerHTML = "<tr></tr>";
-// }
-
-// loadIntoTable('http://api.kesho.me/v1/user-test/index', document.querySelector('.mainTable'))
-////////////////////////////////////////////////////////////////////////////////
-
-
-// fetch('http://api.kesho.me/v1/user-test/index', {
-//   method: 'POST',
-//   headers: {
-//     'Content-Type': 'aplication/json'
-//   },
-//   body: JSON.stringify({
-//     first_name: "giorgi"
-//   })
-// })
-// .then(res => {
-//     return res.json();
-//   })
-// .then(data => console.log(data))
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-// AJAX
-
-// function loadUserData() {
-//   let userDataRequest = new XMLHttpRequest();
-//   userDataRequest.open('GET', 'http://api.kesho.me/v1/user-test/index', true);
-
-//   userDataRequest.onload = () => {
-//     if(userDataRequest.status == 200) {
-//       console.log(this.responseText);
-//     }
-//   }
-//   userDataRequest.send();
-// }
-
-// loadUserData();
-////////////////////////////////////////////////////////////////////////////////
-
-
-
 function renderUsers(users){
   const userTableContainer = document.querySelector(".tableContainer");
   const userTableBody = userTableContainer.querySelector("tbody");
@@ -71,10 +8,10 @@ function renderUsers(users){
                   <td>${users.first_name}</td>
                   <td>${users.last_name}</td>
                   <td>${users.gender}</td>
-                  <td>${users.mobile_number}</td>
-                  <td>${users.personal_number}</td>
-                  <td>${users.zip_code}</td>
-                  <td>${users.actions}</td>
+                  <td>${users.mobile}</td>
+                  <td>${users.pn}</td>
+                  <td>${users.zip}</td>
+                  <td>${users.status}</td>
                  <td><button class = "removeUser">Delete</button></td>
                  <td><button class = "editUser">Edit</button></td>
                 </tr>
@@ -84,19 +21,7 @@ function renderUsers(users){
   userActions();
 }
 
-
-function userActions(){
-  // ცხრილში ღილაკებზე უნდა მიამაგროთ event listener-ები
-  // იქნება 2 ღილაკი რედაქტირება და წაშლა
-  // id შეინახეთ data-user-id ატრიბუტად ღილაკებზე
-  // წაშლა ღილაკზე უნდა გაიგზავნოს წაშლის მოთხოვნა და გადაეცეს id
-  // ეიდტის ღილაკზე უნდა გაიხსნას მოდალ სადაც ფორმი იქნება
-  // ეიდტის ღილაკზე უნდა გამოიძახოთ getUser ფუნქცია და რომ დააბრუნებს ერთი მომხმარებლის დატას (ობიექტს და არა მასივს)
-  // ეს დატა უნდა შეივსოს ფორმში formManager აქვს ახალი შესაძლებლობა formManager.setFields(userObject)
-  // ეს ფუნქცია გამოიძახე და გადაეცი user-ის დატა
-}
-
-
+// Get User Data From Server
 async function getUsers(){
   try {
     const response = await fetch('http://api.kesho.me/v1/user-test/index');
@@ -109,6 +34,29 @@ async function getUsers(){
 getUsers();
 
 
+////////////////////////////////////////////////////////////////////////////////
+// Delete User Data Row
+// const removeBtn = document.querySelectorAll('.removeUser');
+// removeBtn.forEach(btn => {
+//     btn.addEventListener('click', (e) => {
+//         const tr = e.target.parentNode.parentNode;
+//         tr.remove();
+//         createUser();
+//     })
+// })
+////////////////////////////////////////////////////////////////////////////////
+
+
+function userActions(){
+  // ცხრილში ღილაკებზე უნდა მიამაგროთ event listener-ები
+  // იქნება 2 ღილაკი რედაქტირება და წაშლა
+  // id შეინახეთ data-user-id ატრიბუტად ღილაკებზე
+  // წაშლა ღილაკზე უნდა გაიგზავნოს წაშლის მოთხოვნა და გადაეცეს id
+  // ედიტის ღილაკზე უნდა გაიხსნას მოდალ სადაც ფორმი იქნება
+  // ედიტის ღილაკზე უნდა გამოიძახოთ getUser ფუნქცია და რომ დააბრუნებს ერთი მომხმარებლის დატას (ობიექტს და არა მასივს)
+  // ეს დატა უნდა შეივსოს ფორმში formManager აქვს ახალი შესაძლებლობა formManager.setFields(userObject)
+  // ეს ფუნქცია გამოიძახე და გადაეცი user-ის დატა
+}
 
 
 async function createUser(userData){
@@ -126,4 +74,38 @@ async function createUser(userData){
 }
 
 
+// Modal creation, configuration and data validation
 
+// Selecting elements
+const mainModal = document.getElementById('userFormModal');
+const openModalBtn = document.getElementById('modalBtn');
+const closeModalBtn = document.getElementById('closeBtn');
+const modalForm = document.querySelector('form');
+const firstName = document.querySelector('firstName');
+const lastName = document.querySelector('lastName');
+const mobileNumber = document.querySelector('mobileNumber');
+const personalNumber = document.querySelector('personalNumber');
+const zipCode = document.querySelector('zipCode');
+const email = document.querySelector('email');
+
+// Prevent submit from refreshing the page
+modalForm.addEventListener('submit', e => {
+  e.preventDefault();
+})
+
+// Add event listeners for modal open/close buttons
+openModalBtn.addEventListener('click', openModal);
+
+function openModal() {
+  mainModal.style.display = "block";
+}
+
+closeModalBtn.addEventListener('click', closeModal);
+
+function closeModal() {
+  if(mainModal.style.display == "block") {
+    mainModal.style.display = "none";
+  } else {
+    mainModal.style.display = "block";
+  }
+}

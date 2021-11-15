@@ -8,7 +8,10 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h1>User management</h1>
+    <div class="headerClass">
+        <h1>User management</h1>
+        <button id="modalBtn">New User</button>
+    </div>
     <div class="tableContainer">
         <table class="mainTable">
             <thead>
@@ -24,6 +27,82 @@
             </thead>
             <tbody></tbody>
         </table>
+    </div>
+    <div class="mainModal" id="userFormModal">
+        <div class="modalContent">
+            <div class="modalHeader">
+                <span class="close" id="closeBtn">&times;</span>
+            </div>
+            <div class="modalBody">
+                <form id="form" action="/" method="GET" class="modalForm">
+                    <div class="formGroup">
+                        <label for="firstName">
+                            <span>Enter First Name</span>
+                            <input type="text" id="firstName" name="firstName" placeholder="Enter First Name">
+                        </label>
+                        <p class="errorMessage"></p>
+                    </div>
+                    <div class="formGroup">
+                        <label for="lastName">
+                            <span>Enter Last Name</span>
+                            <input type="text" id="lastName" name="lastName" placeholder="Enter Last Name">
+                        </label>
+                        <p class="errorMessage"></p>
+                    </div>
+                    <div class="formGroup">
+                        <label for="mobileNumber">
+                            <span>Enter Mobile Number</span>
+                            <input type="number" id="mobileNumber" name="mobileNumber" placeholder="Enter Mobile Number">
+                        </label>
+                        <p class="errorMessage"></p>
+                    </div>
+                    <div class="formGroup">
+                        <label for="personalNumber">
+                            <span>Enter Personal Number</span>
+                            <input type="number" id="personalNumber" name="personalNumber" placeholder="Enter Personal Number">
+                        </label>
+                        <p class="errorMessage"></p>
+                    </div>
+                    <div class="formGroup">
+                        <label for="zipCode">
+                            <span>Enter Zip Code</span>
+                            <input type="number" id="zipCode" name="zipCode" placeholder="Enter Zip Code">
+                        </label>
+                        <p class="errorMessage"></p>
+                    </div>
+                    <div class="formGroup">
+                        <label for="email">
+                            <span>Enter Email</span>
+                            <input type="email" id="email" name="email" placeholder="Enter Email">
+                        </label>
+                        <p class="errorMessage"></p>
+                    </div>
+                    <div class="formGroup">
+                        <label for="selectStatus">
+                            <span>Select Status</span>
+                            <select name="selectStatus">
+                                <option value disabaled selected>Choose Status</option>
+                                <option>Active</option>
+                                <option>Disabled</option>
+                            </select>
+                        </label>
+                        <p class="errorMessage"></p>
+                    </div>
+                    <div class="formGroup">
+                        <label for="selectGender">
+                            <span>Select Gender</span>
+                            <select name="selectGender">
+                                <option value disabled selected>Choose Gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                        </label>
+                        <p class="errorMessage"></p>
+                    </div>
+                    <button type="submit" class="modalSubmitBtn">Submit</button>
+                </form>
+            </div>
+        </div>
     </div>
     <script src="app.js"></script>
 </body>
