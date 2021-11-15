@@ -88,10 +88,6 @@ const personalNumber = document.querySelector('personalNumber');
 const zipCode = document.querySelector('zipCode');
 const email = document.querySelector('email');
 
-// Prevent submit from refreshing the page
-modalForm.addEventListener('submit', e => {
-  e.preventDefault();
-})
 
 // Add event listeners for modal open/close buttons
 openModalBtn.addEventListener('click', openModal);
@@ -109,3 +105,5 @@ function closeModal() {
     mainModal.style.display = "block";
   }
 }
+
+// Errors
